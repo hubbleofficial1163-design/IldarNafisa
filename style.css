@@ -17,18 +17,16 @@ body {
 
 /* Hero секция - СВЕТЛЫЙ ФОН */
 .hero {
-    width: 100%;
+    height: 100svh;
+    height: 100svh;
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
     background-color: #E8D9C4;
     color: #81754D;
     text-align: center;
-    overflow: visible;
-    min-height: 100vh; /* fallback */
-    min-height: 100svh; /* dynamic viewport height - современный подход */
+    overflow: hidden;
 }
 
 .hero-content {
@@ -43,21 +41,18 @@ body {
 
 /* Фото в hero */
 .hero-photo {
-    position: relative;
+    position: absolute;
     width: 450px;
-    max-width: 85%;
     height: auto;
-    margin-top: auto;
-    margin-bottom: 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 40px 40px 0 0;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
-    flex-shrink: 0;
+    border-radius: 40px 40px 0 0;
+    max-width: 90%;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .hero {
         min-height: 100dvh;
         display: flex;
@@ -88,8 +83,21 @@ body {
         width: 320px;
         max-width: 90%;
     }
+} */
+
+@media screen and (max-width: 479px) {
+    .hero-photo {
+        width: 380px;
+        bottom: 0;
+        max-width: 85%;
+    }
 }
 
+@media screen and (max-width: 360px) {
+    .hero-photo {
+        width: 320px;
+    }
+}
 
 .hero::after {
     content: '';
