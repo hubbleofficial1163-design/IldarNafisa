@@ -28,7 +28,7 @@ body {
     text-align: center;
     overflow: visible;
     min-height: 100vh; /* fallback */
-    min-height: 100dvh; /* dynamic viewport height - современный подход */
+    min-height: 100svh; /* dynamic viewport height - современный подход */
 }
 
 .hero-content {
