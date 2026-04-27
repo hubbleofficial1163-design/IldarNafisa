@@ -209,7 +209,7 @@ function showLoadingModal() {
 }
 
 // ========== GOOGLE SHEETS ==========
-const SCRIPT_URL = 'https://script.google.com/mac18MSExJLpvmi1WekJpFcdvYosXbhrFRhVbyzGMOl4Vk62yUG8TS7NFDzTXlgYj8o-2w/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBOrzPRgjMXzTjwhX1BABlQShtTZ-OtUOCt57bRmvl73IBfRv0aAFGpeBwhnH8zU1G/exec';
 
 // Инициализация формы RSVP (с алкогольными предпочтениями)
 function initRSVPForm() {
@@ -277,16 +277,16 @@ function initRSVPForm() {
                 // Формируем сообщение об успехе
                 let preferencesMessage = '';
                 if (alcoholPreferences) {
-                    preferencesMessage += `\n\n🍸 Алкоголь: ${alcoholPreferences}`;
+                    preferencesMessage += `\n\nАлкоголь: ${alcoholPreferences}`;
                 }
                 if (nonAlcoholPreferences) {
-                    preferencesMessage += `\n🥤 Безалкогольное: ${nonAlcoholPreferences}`;
+                    preferencesMessage += `\n Безалкогольное: ${nonAlcoholPreferences}`;
                 }
                 
                 if (attendance === 'yes') {
                     showModal(
                         'Спасибо, ' + name + '!',
-                        'Мы будем ждать вас на нашей свадьбе 4 августа 2026 года! 🎉' + preferencesMessage,
+                        'Мы будем ждать вас на нашей свадьбе!' + preferencesMessage,
                         false
                     );
                 } else {
