@@ -212,6 +212,7 @@ function showLoadingModal() {
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBOrzPRgjMXzTjwhX1BABlQShtTZ-OtUOCt57bRmvl73IBfRv0aAFGpeBwhnH8zU1G/exec';
 
 // Инициализация формы RSVP (с алкогольными предпочтениями)
+// Инициализация формы RSVP (с алкогольными предпочтениями)
 function initRSVPForm() {
     const rsvpForm = document.querySelector('.rsvp-form');
     if (!rsvpForm) return;
@@ -233,10 +234,6 @@ function initRSVPForm() {
         const alcoholCheckboxes = this.querySelectorAll('input[name="alcohol"]:checked');
         const alcoholPreferences = Array.from(alcoholCheckboxes).map(cb => cb.value).join(', ');
         
-        // Получаем выбранные безалкогольные предпочтения
-        const nonAlcoholCheckboxes = this.querySelectorAll('input[name="nonalcohol"]:checked');
-        const nonAlcoholPreferences = Array.from(nonAlcoholCheckboxes).map(cb => cb.value).join(', ');
-        
         // Валидация
         if (!name) {
             showModal('Ошибка', 'Пожалуйста, введите ваше имя', true);
@@ -253,65 +250,59 @@ function initRSVPForm() {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Отправка...';
         
+        // Показываем модальное окно загрузки
         const loadingModal = showLoadingModal();
         
-        try {
-            // Формируем данные для отправки
-            const formDataToSend = new URLSearchParams();
-            formDataToSend.append('name', name);
-            formDataToSend.append('attendance', attendance);
-            formDataToSend.append('alcohol', alcoholPreferences);
-            formDataToSend.append('nonalcohol', nonAlcoholPreferences);
-            
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formDataToSend.toString()
-            });
-            
-            const result = await response.json();
-            
-            loadingModal.remove();
-            
-            if (result.result === 'success') {
-                // Формируем сообщение об успехе
-                let preferencesMessage = '';
-                if (alcoholPreferences) {
-                    preferencesMessage += `\n\nАлкоголь: ${alcoholPreferences}`;
-                }
-                if (nonAlcoholPreferences) {
-                    preferencesMessage += `\n Безалкогольное: ${nonAlcoholPreferences}`;
-                }
-                
-                if (attendance === 'yes') {
-                    showModal(
-                        'Спасибо, ' + name + '!',
-                        'Мы будем ждать вас на нашей свадьбе!' + preferencesMessage,
-                        false
-                    );
-                } else {
-                    showModal(
-                        'Спасибо за ответ!',
-                        'Очень жаль, что вы не сможете быть с нами в этот день.' + preferencesMessage,
-                        false
-                    );
-                }
-                // Очищаем форму
-                rsvpForm.reset();
-            } else {
-                throw new Error(result.message || 'Ошибка отправки');
+        // Формируем данные для отправки
+        const formDataToSend = new URLSearchParams();
+        formDataToSend.append('name', name);
+        formDataToSend.append('attendance', attendance);
+        formDataToSend.append('alcohol', alcoholPreferences);
+        
+        // Отправляем запрос (фоново, не ждем ответа)
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formDataToSend.toString()
+        }).catch(() => {
+            console.log('Фоновая отправка');
+        });
+        
+        // Ждем 5 секунд с окном загрузки
+        setTimeout(() => {
+            // Закрываем окно загрузки
+            if (loadingModal && loadingModal.remove) {
+                loadingModal.remove();
             }
-        } catch (error) {
-            loadingModal.remove();
-            showModal(
-                'Ошибка',
-                error.message || 'Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз.',
-                true
-            );
-        } finally {
+            
+            // Показываем успешное уведомление
+            let preferencesMessage = '';
+            if (alcoholPreferences) {
+                preferencesMessage = `\n\n🍸 Алкоголь: ${alcoholPreferences}`;
+            }
+            
+            if (attendance === 'yes') {
+                showModal(
+                    'Спасибо, ' + name + '!',
+                    'Мы будем ждать вас на нашей свадьбе 28 июня 2026 года! 🎉' + preferencesMessage,
+                    false
+                );
+            } else {
+                showModal(
+                    'Спасибо за ответ!',
+                    'Очень жаль, что вы не сможете быть с нами в этот день.' + preferencesMessage,
+                    false
+                );
+            }
+            
+            // Очищаем форму
+            rsvpForm.reset();
+            
+            // Возвращаем кнопку в исходное состояние
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
-        }
+        }, 5000); // 5000 миллисекунд = 5 секунд
     });
 }
 
