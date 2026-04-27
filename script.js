@@ -209,7 +209,7 @@ function showLoadingModal() {
 }
 
 // ========== GOOGLE SHEETS ==========
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBOrzPRgjMXzTjwhX1BABlQShtTZ-OtUOCt57bRmvl73IBfRv0aAFGpeBwhnH8zU1G/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwxt9tilWj_1_8kflDXRj0v1_dQ0G6Lnw8gtotQ81SHeI-7Q37o1eS-5vLIAy9AILCL/exec';
 
 // Инициализация формы RSVP (с алкогольными предпочтениями)
 function initRSVPForm() {
