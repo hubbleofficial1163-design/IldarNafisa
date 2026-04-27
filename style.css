@@ -1707,7 +1707,7 @@ a,
     }
     
     .music-player-container {
-        margin: 20px 0 20px 0;  /* уменьшаем отступы */
+        margin: 14px 0 20px 0;  /* чуть выше на мобильных */
     }
     
     .hero-photo {
@@ -1728,7 +1728,7 @@ a,
     }
     
     .music-player-container {
-        margin: 25px 0 15px 0;
+        margin: 14px 0 15px 0;
     }
     
     .hero-photo {
