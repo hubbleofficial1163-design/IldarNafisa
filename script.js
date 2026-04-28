@@ -209,7 +209,7 @@ function showLoadingModal() {
 }
 
 // ========== GOOGLE SHEETS ==========
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBOrzPRgjMXzTjwhX1BABlQShtTZ-OtUOCt57bRmvl73IBfRv0aAFGpeBwhnH8zU1G/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwmlzgH7S5jvuzuNDBRvQknSBEX0uZ7y1ZpHmA9VGIYGAeZ8HiL3GkN0pBrc2fNFBm2/exec';
 
 // Инициализация формы RSVP (с алкогольными предпочтениями)
 // Инициализация формы RSVP (с алкогольными предпочтениями)
@@ -233,6 +233,10 @@ function initRSVPForm() {
         // Получаем выбранные алкогольные предпочтения
         const alcoholCheckboxes = this.querySelectorAll('input[name="alcohol"]:checked');
         const alcoholPreferences = Array.from(alcoholCheckboxes).map(cb => cb.value).join(', ');
+
+        // Получаем ответ про жилье
+        const housingCheckbox = this.querySelector('input[name="housing"]:checked');
+        const housing = housingCheckbox ? housingCheckbox.value : 'Не указано';
         
         // Валидация
         if (!name) {
@@ -258,6 +262,7 @@ function initRSVPForm() {
         formDataToSend.append('name', name);
         formDataToSend.append('attendance', attendance);
         formDataToSend.append('alcohol', alcoholPreferences);
+        formDataToSend.append('housing', housing);
         
         // Отправляем запрос (фоново, не ждем ответа)
         fetch(SCRIPT_URL, {
