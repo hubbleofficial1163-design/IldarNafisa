@@ -1735,3 +1735,253 @@ a,
         width: 320px;
     }
 }
+
+/* Pre-footer секция с фото */
+.prefooter-section {
+    background-color: #E8D9C4;
+    padding: 0;
+    overflow: hidden;
+}
+
+.prefooter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.prefooter-photo-wrapper {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E8D9C4;
+}
+
+.prefooter-photo {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid rgba(129, 117, 77, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.prefooter-photo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+    .prefooter-photo-wrapper {
+        padding: 30px 15px;
+    }
+    .prefooter-photo {
+        border-width: 6px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .prefooter-photo-wrapper {
+        padding: 20px 10px;
+    }
+    .prefooter-photo {
+        border-width: 4px;
+    }
+}
+
+
+/* ============================================
+   ПРИНУДИТЕЛЬНОЕ ПРИМЕНЕНИЕ ШРИФТОВ
+   ============================================ */
+
+/* Принудительно применяем шрифты ко всем элементам */
+*,
+*::before,
+*::after {
+    font-family: inherit;
+}
+
+body,
+.hero,
+.location-section,
+.program-section,
+.dresscode-section,
+.wishes-section,
+.rsvp-section,
+.footer-section,
+p,
+div,
+span,
+a,
+li,
+label {
+    font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif !important;
+}
+
+/* Все заголовки */
+h1, h2, h3, h4, h5, h6,
+.title,
+.section-title,
+.location-title,
+.dresscode-title,
+.wishes-title,
+.rsvp-title,
+.countdown-title,
+.location-title,
+.program-title,
+.promise-title,
+.hero .title {
+    font-family: 'Cinzel', 'Georgia', serif !important;
+    font-weight: 700 !important;
+}
+
+/* Подзаголовки */
+.subtitle,
+.hero .subtitle {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.4rem !important;
+    text-transform: uppercase !important;
+}
+
+/* Текст приглашения */
+.invitation,
+.wishes-text,
+.rsvp-text,
+.dresscode-text,
+.location-address,
+.footer-text,
+.timeline-text,
+.timeline-time {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 400 !important;
+    font-size: 1.2rem !important;
+    line-height: 1.65 !important;
+}
+
+/* Даты */
+.date,
+.calendar-date,
+.countdown-number,
+.program-time {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+}
+
+/* Кнопки */
+.map-button,
+.submit-button,
+button,
+.play-button {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+}
+
+/* Поля ввода */
+input,
+.form-input,
+.form-select,
+textarea,
+select {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 400 !important;
+}
+
+/* Радио и чекбоксы */
+.radio-text,
+.checkbox-text,
+.alcohol-label {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 400 !important;
+}
+
+/* Текст плеера */
+.circle-text text {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.15em !important;
+}
+
+/* Футер */
+.footer-contact {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
+}
+
+/* Принудительно для всех элементов на странице */
+.hero-content *,
+.location-container *,
+.program-container *,
+.dresscode-container *,
+.wishes-container *,
+.rsvp-container *,
+.footer-container *,
+.countdown-container * {
+    font-family: inherit;
+}
+
+
+/* ============================================
+   ТОЛЬКО ШРИФТ ДЛЯ ВСЕХ ЗАГОЛОВКОВ (как у DRESS CODE)
+   Никаких изменений положения, размера и выравнивания!
+   ============================================ */
+
+/* Все заголовки секций — только шрифт, как у DRESS CODE */
+.section-title,
+.location-title,
+.dresscode-title,
+.wishes-title,
+.rsvp-title,
+.countdown-title,
+.promise-title {
+    font-family: 'Cinzel', 'Georgia', serif !important;
+    font-weight: 300 !important;  /* Тонкий, как в DRESS CODE */
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+    /* НЕ трогаем: font-size, text-align, margin, padding, position */
+}
+
+/* Для заголовка DRESS CODE с двумя span — оставляем его оригинальную структуру */
+.dresscode-title {
+    /* Оставляем как есть, не меняем display/flex/position */
+    font-family: 'Cinzel', 'Georgia', serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+}
+
+/* Имена в hero — тоже делаем элегантными, но чуть жирнее для читаемости */
+.hero .title {
+    font-family: 'Cinzel', 'Georgia', serif !important;
+    font-weight: 400 !important;
+    /* Оригинальные размер и положение остаются */
+}
+
+/* ============================================
+   ИСПРАВЛЕНИЕ ДЛЯ PROGRAM-TITLE
+   ============================================ */
+
+/* Возвращаем правильный цвет и делаем шрифт элегантным */
+.program-title {
+    font-family: 'Cinzel', 'Georgia', serif !important;
+    font-weight: 300 !important;  /* Тонкий, как у DRESS CODE */
+    font-size: 1.3rem !important;
+    color: #81754D !important;    /* Меняем чёрный (#333) на элегантный золотисто-коричневый */
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 8px !important;
+}
+
+/* Для времени в программе тоже сделаем элегантным */
+.program-time {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 300 !important;
+    font-size: 1.1rem !important;
+    color: #81754D !important;
+    letter-spacing: 0.05em !important;
+}
